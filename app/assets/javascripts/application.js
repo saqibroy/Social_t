@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require js/plugins/jquery/jquery.min
+//= require jquery_ujs
+//= require turbolinks
 //= require js/plugins/jquery/jquery-ui.min
 //= require js/plugins/bootstrap/bootstrap.min
 //= require js/plugins/icheck/icheck.min
