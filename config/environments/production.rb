@@ -2,8 +2,24 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
+  config.action_mailer.default_url_options = { :host => 'protected-plains-84111.herokuapp.com' }
   config.serve_static_files = true
   config.cache_classes = true
+  Rails.application.routes.default_url_options[:host] = 'protected-plains-84111.herokuapp.com'
+  config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = false
+config.action_mailer.default :charset => "utf-8"
+
+config.action_mailer.smtp_settings = {
+address: "smtp.gmail.com",
+port: 587,
+domain: ENV["GMAIL_DOMAIN"],
+authentication: "plain",
+enable_starttls_auto: true,
+user_name: ENV["GMAIL_USERNAME"],
+password: ENV["GMAIL_PASSWORD"]
+}
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
