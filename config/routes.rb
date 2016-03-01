@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
  
+  resources :applications
   resources :words
   get 'super_admin/index'
+  get 'super_admin/user_request'
+  get 'super_admin/user_request_done'
 
   get 'home/index'
 

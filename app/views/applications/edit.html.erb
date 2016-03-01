@@ -36,7 +36,7 @@
                      <span class="xn-text">Dashboard</span>
                      <% end %>                       
                     </li>
-                     <li class="active">
+                     <li>
                      <%= link_to words_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Words</span>
@@ -48,8 +48,8 @@
                      <span class="xn-text">Notifications</span>
                      <% end %>
                     </li>
-                     <li>
-                        <%= link_to '#' do %>
+                     <li  class="active">
+                        <%= link_to applications_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Applications</span>
                      <% end %>
@@ -191,7 +191,7 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><%= link_to "Home", super_admin_index_path %></li>                    
-                    <li class="active">New Word</li>
+                    <li class="active">Edit Application</li>
                 </ul>
                 <!-- END BREADCRUMB -->  
                 <div class="page-content-wrap">
@@ -200,10 +200,10 @@
                         <div class="col-md-12">
                             
                             
-                            <%= simple_form_for(@word) do |f| %>
+                            <%= simple_form_for(@application) do |f| %>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><strong>ADD WORD</strong></h3>
+                                    <h3 class="panel-title"><strong>EDIT APPLICATION</strong></h3>
                                     <ul class="panel-controls">
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul>
@@ -211,20 +211,42 @@
                                
                                 <div class="panel-body"> 
                                      <div class="form-group col-md-offset-2">
-                                        <label class="col-md-1 col-xs-12 control-label ">TYPE</label>
+                                        <label class="col-md-1 col-xs-12 control-label ">PUBLIC NAME</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <%= f.input :type,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                                <%= f.input :public_name,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
                                             </div>                                            
                                         </div>
                                     </div>
                                     <br><br>
                                      <div class="form-group col-md-offset-2">
-                                        <label class="col-md-1 col-xs-12 control-label">WORD</label>
+                                        <label class="col-md-1 col-xs-12 control-label ">PUBLIC KEY</label>
                                         <div class="col-md-6 col-xs-12">                                            
-                                            <%= f.input :word_content,label: false, required: true,input_html: {class: "form-control",:rows => 5},wrapper: false%>
-                                           
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :public_key,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">PRIVATE NAME</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :private_name,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">PRIVATE KEY</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :private_key,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>

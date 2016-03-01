@@ -31,7 +31,10 @@
                     </li>
                     <li class="xn-title">Navigation</li>
                     <li class="active">
-                        <a href="dashboard.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
+                        <%= link_to super_admin_index_path do %>
+                     <span class="fa fa-map-marker"></span>
+                     <span class="xn-text">Dashboard</span>
+                     <% end %>               
                     </li>
                      <li>
                      <%= link_to words_path do %>
@@ -40,13 +43,28 @@
                      <% end %>
                     </li>
                      <li>
-                        <a href="notification.html"><span class="fa fa-map-marker"></span> <span class="xn-text">Notification</span></a>
+                        <%= link_to '#' do %>
+                     <span class="fa fa-map-marker"></span>
+                     <span class="xn-text">Notifications</span>
+                     <% end %>
                     </li>
                      <li>
-                        <a href="application.html"><span class="fa fa-map-marker"></span> <span class="xn-text">Application</span></a>
+                        <%= link_to applications_path do %>
+                     <span class="fa fa-map-marker"></span>
+                     <span class="xn-text">Applications</span>
+                     <% end %>
                     </li>
                     <li>
-                        <a href="users.html"><span class="fa fa-map-marker"></span> <span class="xn-text">Users</span></a>
+                        <%= link_to '#' do %>
+                     <span class="fa fa-map-marker"></span>
+                     <span class="xn-text">Users</span>
+                     <% end %>
+                    </li> 
+                    <li>
+                        <%= link_to super_admin_user_request_path do %>
+                     <span class="fa fa-map-marker"></span>
+                     <span class="xn-text">User Requests</span>
+                     <% end %>
                     </li> 
                     
                 </ul>
