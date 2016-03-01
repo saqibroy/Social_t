@@ -5,20 +5,18 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'protected-plains-84111.herokuapp.com' }
   config.serve_static_files = true
   config.cache_classes = true
-  Rails.application.routes.default_url_options[:host] = 'protected-plains-84111.herokuapp.com'
-  config.action_mailer.delivery_method = :smtp
-config.action_mailer.perform_deliveries = true
-config.action_mailer.raise_delivery_errors = false
-config.action_mailer.default :charset => "utf-8"
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.smtp_settings = 
+{
 
-config.action_mailer.smtp_settings = {
-address: "smtp.gmail.com",
-port: 587,
-domain: ENV["GMAIL_DOMAIN"],
-authentication: "plain",
-enable_starttls_auto: true,
-user_name: ENV["GMAIL_USERNAME"],
-password: ENV["GMAIL_PASSWORD"]
+  :address            => 'smtp.gmail.com',
+  :port               => 587,
+  :domain             => 'gmail.com', #you can also use google.com
+  :authentication     => :plain,
+  :user_name          => 'saqibsohail007@gmail.com',
+  :password           => 'saqi2020'
 }
 
   # Eager load code on boot. This eager loads most of Rails and
