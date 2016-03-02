@@ -30,7 +30,7 @@
                         </div>                                                                        
                     </li>
                     <li class="xn-title">Navigation</li>
-                    <li class="active">
+                    <li>
                         <%= link_to super_admin_index_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Dashboard</span>
@@ -54,7 +54,7 @@
                      <span class="xn-text">Applications</span>
                      <% end %>
                     </li>
-                    <li>
+                    <li  class="active">
                         <%= link_to super_admin_user_data_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Users</span>
@@ -191,14 +191,56 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><%= link_to "Home", super_admin_index_path %></li>                    
-                    <li class="active">Dashboard</li>
+                    <li class="active">Users</li>
                 </ul>
                 <!-- END BREADCRUMB -->  
                 <div class="page-content-wrap">
                  <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                        HERE YOU GO
+                        <div class="panel-heading">
+                                    <h3 class="panel-title">USERS</h3>
+                                    <div class="btn-group pull-right">
+                                    <%= link_to "Add User",super_admin_user_new_path, class: "btn btn-primary" %>
+                                    <%= link_to "Export Applcation",super_admin_user_data_path(format: "csv"), class: "btn btn-primary" %>
+                                   
+                                   
+                                        
+                                    </div>                                    
+                                    
+                                </div>
+                                <div class="panel-body">
+                                    <table id="customers2" class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>NAME</th>
+                                                <th>EMAIL</th>
+                                                <th>TYPE</th>
+                                                <th>ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% @users.each do |user| %>
+                                            <tr>
+                                                <td><%= user.id %></td>
+                                                <td><%= user.name %></td>
+                                                <td><%= user.email %></td>
+                                                <td><%= user.user_type %></td>
+                            <td> <%= link_to super_admin_user_edit_path(id: user.id), class: "btn btn-default btn-rounded btn-sm" do %>
+                            <span class="fa fa-pencil"></span>
+                            <% end %>
+                            <%= link_to super_admin_user_destroy_path, method: :delete,data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-rounded btn-sm" do %>
+                            <span class="fa fa-times"></span>
+                            <% end %>
+                            </td>
+                                            </tr>
+                                            <% end %>
+                                            
+                                </tbody>
+                                    </table>                                    
+                                    
+                                </div>
                         </div>
                     </div>
                  </div>

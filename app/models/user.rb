@@ -7,4 +7,23 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_attached_file :image, styles: { thumb: "200x200>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+
+  def define_role(type)
+  	if type == "Admin"
+  		self.add_role :admin
+  	else
+  		self.add_role :user
+  	end
+  end
 end

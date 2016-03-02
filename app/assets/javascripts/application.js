@@ -21,4 +21,4 @@
 //= require js/plugins
 //= require js/actions
 
-
+$(".flash-popup" ).fadeOut(2000);

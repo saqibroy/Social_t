@@ -30,11 +30,11 @@
                         </div>                                                                        
                     </li>
                     <li class="xn-title">Navigation</li>
-                    <li class="active">
+                    <li>
                         <%= link_to super_admin_index_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Dashboard</span>
-                     <% end %>               
+                     <% end %>                       
                     </li>
                      <li>
                      <%= link_to words_path do %>
@@ -54,7 +54,7 @@
                      <span class="xn-text">Applications</span>
                      <% end %>
                     </li>
-                    <li>
+                    <li  class="active">
                         <%= link_to super_admin_user_data_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Users</span>
@@ -191,18 +191,106 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><%= link_to "Home", super_admin_index_path %></li>                    
-                    <li class="active">Dashboard</li>
+                    <li class="active">Edit User</li>
                 </ul>
                 <!-- END BREADCRUMB -->  
                 <div class="page-content-wrap">
-                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                        HERE YOU GO
+                
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            
+                            <%= simple_form_for(@user,:url => super_admin_user_update_path(id: @user.id), :method => :put) do |f| %>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><strong>EDIT USER</strong></h3>
+                                    <ul class="panel-controls">
+                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                                    </ul>
+                                </div>
+                               
+                                <div class="panel-body"> 
+                                     <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">NAME</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :name,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                     <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">EMAIL</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :email,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">IMAGE</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :image,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">PASSWORD</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :password,label: false, required: true,input_html: {class: "form-control"},wrapper: false,hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">CONFIRM PASSWORD</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input :password_confirmation,label: false, required: true,input_html: {class: "form-control"},wrapper: false%>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">USER TYPE</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.select(:user_type, ['Admin','User'], {}, { :class => 'form-control', }) %>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-offset-2">
+                                        <label class="col-md-1 col-xs-12 control-label ">STATUS</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <%= f.input(:status, as: :boolean, boolean_style: :inline,label: false, required: true,wrapper: false) %>
+                                           
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button class="btn btn-default">Clear Form</button>                                    
+                                    <button class="btn btn-primary pull-right">Submit</button>
+                                </div>
+                            </div>
+                            <% end %>
+                            
                         </div>
-                    </div>
-                 </div>
-                </div>                   
+                    </div>                    
+                    
+                </div>                  
              </div>
 
                    
@@ -227,3 +315,20 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

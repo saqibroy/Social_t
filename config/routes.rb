@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   get 'super_admin/index'
   get 'super_admin/user_request'
   get 'super_admin/user_request_done'
+  get 'super_admin/user_data'
+  get 'super_admin/user_new'
+  post 'super_admin/user_create'
+  get 'super_admin/user_edit'
+  put 'super_admin/user_update'
+  get 'super_admin/user_destroy'
 
   get 'home/index'
 
@@ -12,7 +18,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  devise_for :users, :controllers => { :registrations => 'registrations' }
+  devise_for :users, :controllers => { :registrations => 'registrations' , :sessions => "sessions" } 
    root 'home#index'
 
   # Example of regular route:
