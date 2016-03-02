@@ -24,7 +24,10 @@
                                 
                             </div>
                             <div class="profile-controls">
-                                <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
+                                <div class="profile-controls">
+                            <%= link_to edit_user_registration_path, class: "profile-control-left" do %>
+                            <span class="fa fa-info"></span>
+                            <% end %>
                                 <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
                             </div>
                         </div>                                                                        
@@ -141,46 +144,24 @@
                     <!-- TASKS -->
                     <li class="xn-icon-button pull-right">
                         <a href="#"><span class="fa fa-tasks"></span></a>
-                        <div class="informer informer-warning">3</div>
+                        <div class="informer informer-warning"><%= @count %></div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>                                
+                                <h3 class="panel-title"><span class="fa fa-tasks"></span> User Requests</h3>                                
                                 <div class="pull-right">
-                                    <span class="label label-warning">3 active</span>
+                                    <span class="label label-warning"><%= @count %> Non active</span>
                                 </div>
                             </div>
-                            <div class="panel-body list-group scroll" style="height: 200px;">                                
-                                <a class="list-group-item" href="#">
-                                    <strong>Phasellus augue arcu, elementum</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Aenean ac cursus</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%</div>
-                                    </div>
-                                    <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Lorem ipsum dolor</strong>
-                                    <div class="progress progress-small progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
-                                </a>
-                                <a class="list-group-item" href="#">
-                                    <strong>Cras suscipit ac quam at tincidunt.</strong>
-                                    <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">100%</div>
-                                    </div>
-                                    <small class="text-muted">John Doe, 21 Sep 2014 /</small><small class="text-success"> Done</small>
-                                </a>                                
+                            <div class="panel-body list-group scroll" style="height: 200px;">    <% @requests.each do |r| %>
+                            <%= link_to super_admin_user_request_path, class: "list-group-item" do %>           
+                                
+                                    <h3><strong><%= r.name %> </strong> <small>[ <%= r.user_type %> ]</small> </h3>
+                                <% end %>
+                                <% end %>
+                                                  
                             </div>     
                             <div class="panel-footer text-center">
-                                <a href="pages-tasks.html">Show all tasks</a>
+                            <%= link_to "Show all requests", super_admin_user_request_path %>
                             </div>                            
                         </div>                        
                     </li>
@@ -198,7 +179,99 @@
                  <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                        HERE YOU GO
+                        <div class="row">
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET MESSAGES -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= words_path %>';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-file-word-o"></span>
+                                </div>                             
+                                <div class="widget-data">
+                                    <div class="widget-int num-count"><%= @words_count %></div>
+                                    <div class="widget-title">Words</div>
+                                </div>      
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>
+                            </div>                            
+                            <!-- END WIDGET MESSAGES -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET MESSAGES -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='#';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-bell-o"></span>
+                                </div>                             
+                                <div class="widget-data">
+                                    <div class="widget-int num-count">0</div>
+                                    <div class="widget-title">Notification</div>
+                                </div>      
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>
+                            </div>                            
+                            <!-- END WIDGET MESSAGES -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET MESSAGES -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= applications_path %>';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-archive"></span>
+                                </div>                             
+                                <div class="widget-data">
+                                    <div class="widget-int num-count"><%= @applications_count %></div>
+                                    <div class="widget-title">Applications</div>
+                                </div>      
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>
+                            </div>                            
+                            <!-- END WIDGET MESSAGES -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET REGISTRED -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= super_admin_user_data_path %>';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-users"></span>
+                                </div>
+                                <div class="widget-data">
+                                    <div class="widget-int num-count"><%= @users_count %></div>
+                                    <div class="widget-title">Registred users</div>
+                                </div>
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>                            
+                            </div>                            
+                            <!-- END WIDGET REGISTRED -->
+                            
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <!-- START WIDGET REGISTRED -->
+                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= super_admin_user_request_path %>';">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-user"></span>
+                                </div>
+                                <div class="widget-data">
+                                    <div class="widget-int num-count"><%= @count %></div>
+                                    <div class="widget-title">User requests</div>
+                                </div>
+                                <div class="widget-controls">                                
+                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                                </div>                            
+                            </div>                            
+                            <!-- END WIDGET REGISTRED -->
+                            
+                        </div>
+                            
+                        </div>
                         </div>
                     </div>
                  </div>

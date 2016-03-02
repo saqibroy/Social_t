@@ -1,6 +1,7 @@
 class SuperAdminController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [ :user_edit, :user_update, :user_destroy]
+
   def index
   end
   def user_request
@@ -75,4 +76,5 @@ end
     def user_params
       params.require(:user).permit(:name,:email,:image,:password,:password_confirmation,:user_type,:status)
     end
+
 end
