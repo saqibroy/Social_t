@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_attached_file :image, styles: { thumb: "200x200>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-
+  has_many :conversations, :foreign_key => :sender_id
 
   def self.to_csv
     CSV.generate do |csv|

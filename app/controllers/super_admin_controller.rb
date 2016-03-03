@@ -63,6 +63,9 @@ class SuperAdminController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def messages_index
+    @users= User.all.where(status: true)
+  end
 
 
 

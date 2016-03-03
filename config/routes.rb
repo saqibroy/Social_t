@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'super_admin/user_edit'
   put 'super_admin/user_update'
   get 'super_admin/user_destroy'
+  get 'super_admin/messages_index'
 
   get 'home/index'
 
@@ -20,6 +21,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   devise_for :users, :controllers => { :registrations => 'registrations' , :sessions => "sessions" } 
    root 'home#index'
+     unauthenticated :user do
+    devise_scope :user do
+      get "/" => "devise/sessions#new"
+    end
+  end
+
+  resources :conversations do
+    resources :messages
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

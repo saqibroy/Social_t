@@ -33,17 +33,11 @@
                         </div>                                                                        
                     </li>
                     <li class="xn-title">Navigation</li>
-                    <li class="active">
+                    <li>
                         <%= link_to super_admin_index_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Dashboard</span>
                      <% end %>               
-                    </li>
-                    <li>
-                     <%= link_to super_admin_messages_index_path do %>
-                     <span class="fa fa-map-marker"></span>
-                     <span class="xn-text">Messages</span>
-                     <% end %>
                     </li>
                      <li>
                      <%= link_to words_path do %>
@@ -63,7 +57,7 @@
                      <span class="xn-text">Applications</span>
                      <% end %>
                     </li>
-                    <li>
+                    <li  class="active">
                         <%= link_to super_admin_user_data_path do %>
                      <span class="fa fa-map-marker"></span>
                      <span class="xn-text">Users</span>
@@ -148,7 +142,7 @@
                     </li>
                     <!-- END MESSAGES -->
                     <!-- TASKS -->
-                    <li class="xn-icon-button pull-right">
+                     <li class="xn-icon-button pull-right">
                         <a href="#"><span class="fa fa-tasks"></span></a>
                         <div class="informer informer-warning"><%= @count %></div>
                         <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
@@ -178,106 +172,49 @@
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><%= link_to "Home", super_admin_index_path %></li>                    
-                    <li class="active">Dashboard</li>
+                    <li class="active">Messages</li>
                 </ul>
                 <!-- END BREADCRUMB -->  
                 <div class="page-content-wrap">
                  <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                        <div class="row">
-                        <div class="col-md-4">
-                            
-                            <!-- START WIDGET MESSAGES -->
-                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= words_path %>';">
-                                <div class="widget-item-left">
-                                    <span class="fa fa-file-word-o"></span>
-                                </div>                             
-                                <div class="widget-data">
-                                    <div class="widget-int num-count"><%= @words_count %></div>
-                                    <div class="widget-title">Words</div>
-                                </div>      
-                                <div class="widget-controls">                                
-                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        <div class="panel-heading">
+                                    <h3 class="panel-title">Messages</h3>
+                                    <div class="btn-group pull-right">
+                                    <%= link_to "Add User",super_admin_user_new_path, class: "btn btn-primary" %>
+                                    <%= link_to "Export Users",super_admin_user_data_path(format: "csv"), class: "btn btn-primary" %>
+                                   
+                                   
+                                        
+                                    </div>                                    
+                                    
                                 </div>
-                            </div>                            
-                            <!-- END WIDGET MESSAGES -->
+                                <div class="panel-body">
+                                    <table id="customers2" class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>NAME</th>
+                                                <th>ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% @users.each_with_index do |user, index| %>
+                                            <tr>
+                                                <td><%= index +=1 %></td>
+                                                <td><%= user.name %></td>
+                            <td>  <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+                    "data-sid" => current_user.id, "data-rip" => user.id %>
                             
-                        </div>
-                        <div class="col-md-4">
-                            
-                            <!-- START WIDGET MESSAGES -->
-                            <div class="widget widget-default widget-item-icon" onclick="location.href='#';">
-                                <div class="widget-item-left">
-                                    <span class="fa fa-bell-o"></span>
-                                </div>                             
-                                <div class="widget-data">
-                                    <div class="widget-int num-count">0</div>
-                                    <div class="widget-title">Notification</div>
-                                </div>      
-                                <div class="widget-controls">                                
-                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            </td>
+                                            </tr>
+                                            <% end %>
+                                            
+                                </tbody>
+                                    </table>                                    
+                                    
                                 </div>
-                            </div>                            
-                            <!-- END WIDGET MESSAGES -->
-                            
-                        </div>
-                        <div class="col-md-4">
-                            
-                            <!-- START WIDGET MESSAGES -->
-                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= applications_path %>';">
-                                <div class="widget-item-left">
-                                    <span class="fa fa-archive"></span>
-                                </div>                             
-                                <div class="widget-data">
-                                    <div class="widget-int num-count"><%= @applications_count %></div>
-                                    <div class="widget-title">Applications</div>
-                                </div>      
-                                <div class="widget-controls">                                
-                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                                </div>
-                            </div>                            
-                            <!-- END WIDGET MESSAGES -->
-                            
-                        </div>
-                        <div class="col-md-4">
-                            
-                            <!-- START WIDGET REGISTRED -->
-                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= super_admin_user_data_path %>';">
-                                <div class="widget-item-left">
-                                    <span class="fa fa-users"></span>
-                                </div>
-                                <div class="widget-data">
-                                    <div class="widget-int num-count"><%= @users_count %></div>
-                                    <div class="widget-title">Registred users</div>
-                                </div>
-                                <div class="widget-controls">                                
-                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                                </div>                            
-                            </div>                            
-                            <!-- END WIDGET REGISTRED -->
-                            
-                        </div>
-                        <div class="col-md-4">
-                            
-                            <!-- START WIDGET REGISTRED -->
-                            <div class="widget widget-default widget-item-icon" onclick="location.href='<%= super_admin_user_request_path %>';">
-                                <div class="widget-item-left">
-                                    <span class="fa fa-user"></span>
-                                </div>
-                                <div class="widget-data">
-                                    <div class="widget-int num-count"><%= @count %></div>
-                                    <div class="widget-title">User requests</div>
-                                </div>
-                                <div class="widget-controls">                                
-                                    <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                                </div>                            
-                            </div>                            
-                            <!-- END WIDGET REGISTRED -->
-                            
-                        </div>
-                            
-                        </div>
                         </div>
                     </div>
                  </div>

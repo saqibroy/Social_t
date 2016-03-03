@@ -12,7 +12,6 @@
 //
 //= require js/plugins/jquery/jquery.min
 //= require jquery_ujs
-//= require turbolinks
 //= require js/plugins/jquery/jquery-ui.min
 //= require js/plugins/bootstrap/bootstrap.min
 //= require js/plugins/icheck/icheck.min
@@ -20,5 +19,10 @@
 //= require js/plugins/datatables/jquery.dataTables.min
 //= require js/plugins
 //= require js/actions
+
+//= require users
+//= require chat
+//= require private_pub
+//= require turbolinks
 
 $(".flash-popup" ).fadeOut(2000);
