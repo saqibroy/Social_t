@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   put 'super_admin/user_update'
   get 'super_admin/user_destroy'
   get 'super_admin/messages_index'
+  get 'super_admin/notifications_index'
+  get 'super_admin/notifications_new'
+  post 'super_admin/notifications_create'
 
   get 'home/index'
 

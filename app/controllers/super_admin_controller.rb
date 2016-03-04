@@ -66,6 +66,18 @@ class SuperAdminController < ApplicationController
   def messages_index
     @users= User.all.where(status: true)
   end
+  def notifications_index
+    @users= User.all.where(status: true)
+  end
+  def notifications_new
+    @notification= Notification.new
+    @user= params[:id]
+  end
+  def notifications_create
+    @notification= Notification.new(notification_params)
+    @notification.save
+    redirect_to super_admin_notifications_index_path, notice: 'Notification successfully sent.'
+  end
 
 
 
@@ -78,6 +90,9 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name,:email,:image,:password,:password_confirmation,:user_type,:status)
+    end
+    def notification_params
+      params.require(:notification).permit(:content,:user_id)
     end
 
 end

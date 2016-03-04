@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_attached_file :image, styles: { thumb: "200x200>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   has_many :conversations, :foreign_key => :sender_id
+  has_many :messages
 
   def self.to_csv
     CSV.generate do |csv|

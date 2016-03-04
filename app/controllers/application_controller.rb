@@ -10,5 +10,12 @@ class ApplicationController < ActionController::Base
       @words_count= Word.all.count
       @applications_count= Application.all.count
       @users_count= User.all.where(status: true).count
+      if current_user.present?
+      	@noti= Notification.all.where(user_id: current_user.id).limit(3)
+      	@noti_count= Notification.all.where(user_id: current_user.id).count
+      	@msg_count= Message.all.where(user_id: current_user.id).count
+      end
+
+      
     end
 end
